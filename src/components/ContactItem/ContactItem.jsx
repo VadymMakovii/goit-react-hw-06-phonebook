@@ -1,14 +1,16 @@
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import { Button } from 'components/ContactForm/ContactForm.styled';
 import { Item, Contact } from './ContactItem.styled';
-import { useAppContext } from '../../services/appContext';
 
 export const ContactItem = ({ id, name, number }) => {
-  const { deleteContact } = useAppContext();
+  const dispatch = useDispatch();
+
   return (
     <Item>
       <Contact>&#8226; {`${name}: ${number}`}</Contact>
-      <Button onClick={() => { deleteContact(id) }}>Delete</Button>
+      <Button onClick={() => dispatch(deleteContact(id))}>Delete</Button>
     </Item>
   );
 };
